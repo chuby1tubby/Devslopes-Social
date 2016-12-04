@@ -46,12 +46,12 @@ static NSString *const kFBSDKAccessTokenEncodedKey = @"tokenEncoded";
   NSString *uuid = [defaults objectForKey:kFBSDKAccessTokenUserDefaultsKey];
 
   NSDictionary *dict = [_keychainStore dictionaryForKey:kFBSDKAccessTokenUserDefaultsKey];
-  if (![dict[kFBSDKAccessTokenUUIDKey] isEqualToString:uuid]) {
-    // if the uuid doesn't match (including if there is no uuid in defaults which means uninstalled case)
-    // clear the keychain and return nil.
-    [self clearCache];
-    return nil;
-  }
+//  if (![dict[kFBSDKAccessTokenUUIDKey] isEqualToString:uuid]) {
+//    // if the uuid doesn't match (including if there is no uuid in defaults which means uninstalled case)
+//    // clear the keychain and return nil.
+//    [self clearCache];
+//    return nil;
+//  }
 
   id tokenData = dict[kFBSDKAccessTokenEncodedKey];
   if ([tokenData isKindOfClass:[NSData class]]) {
