@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SignInVC: UIViewController {
 
@@ -15,4 +17,7 @@ class SignInVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBAction func facebookBtnTapped(_ sender: Any) {
+        
+    }
 }

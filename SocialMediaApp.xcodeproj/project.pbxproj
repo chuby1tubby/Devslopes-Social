@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		009666290D0D4BF66203852B /* Pods_SocialMediaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1019181A15453E88B0F5450C /* Pods_SocialMediaApp.framework */; };
 		BF6E08351DF243E800B62DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF6E08341DF243E800B62DD0 /* GoogleService-Info.plist */; };
+		BF8796841DF36E7900563245 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8796831DF36E7900563245 /* ShadowView.swift */; };
+		BF8796861DF36EEA00563245 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8796851DF36EEA00563245 /* Constants.swift */; };
+		BF8796881DF370FC00563245 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8796871DF370FC00563245 /* RoundButton.swift */; };
+		BF87968A1DF372DC00563245 /* CustomField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8796891DF372DC00563245 /* CustomField.swift */; };
+		BF87968C1DF3745400563245 /* RoundedCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87968B1DF3745400563245 /* RoundedCornerButton.swift */; };
 		BFD9D86E1DF237220031D653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9D86D1DF237220031D653 /* AppDelegate.swift */; };
 		BFD9D8701DF237220031D653 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9D86F1DF237220031D653 /* SignInVC.swift */; };
 		BFD9D8731DF237220031D653 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD9D8711DF237220031D653 /* Main.storyboard */; };
@@ -40,6 +45,11 @@
 		2FD87DF6DF71B81BD0B54AD5 /* Pods-SocialMediaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialMediaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialMediaApp/Pods-SocialMediaApp.debug.xcconfig"; sourceTree = "<group>"; };
 		88FC9B3FAF5A22765899D7D1 /* Pods-SocialMediaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialMediaApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialMediaApp/Pods-SocialMediaApp.release.xcconfig"; sourceTree = "<group>"; };
 		BF6E08341DF243E800B62DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF8796831DF36E7900563245 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		BF8796851DF36EEA00563245 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BF8796871DF370FC00563245 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		BF8796891DF372DC00563245 /* CustomField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomField.swift; sourceTree = "<group>"; };
+		BF87968B1DF3745400563245 /* RoundedCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerButton.swift; sourceTree = "<group>"; };
 		BFD9D86A1DF237220031D653 /* SocialMediaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMediaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD9D86D1DF237220031D653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD9D86F1DF237220031D653 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -92,6 +102,10 @@
 		BF6E08371DF245E200B62DD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BF8796831DF36E7900563245 /* ShadowView.swift */,
+				BF8796871DF370FC00563245 /* RoundButton.swift */,
+				BF8796891DF372DC00563245 /* CustomField.swift */,
+				BF87968B1DF3745400563245 /* RoundedCornerButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -109,6 +123,7 @@
 				BFD9D86D1DF237220031D653 /* AppDelegate.swift */,
 				BFD9D8791DF237220031D653 /* Info.plist */,
 				BF6E08341DF243E800B62DD0 /* GoogleService-Info.plist */,
+				BF8796851DF36EEA00563245 /* Constants.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -373,8 +388,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8796841DF36E7900563245 /* ShadowView.swift in Sources */,
+				BF8796881DF370FC00563245 /* RoundButton.swift in Sources */,
 				BFD9D8701DF237220031D653 /* SignInVC.swift in Sources */,
+				BF87968A1DF372DC00563245 /* CustomField.swift in Sources */,
+				BF87968C1DF3745400563245 /* RoundedCornerButton.swift in Sources */,
 				BFD9D86E1DF237220031D653 /* AppDelegate.swift in Sources */,
+				BF8796861DF36EEA00563245 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
