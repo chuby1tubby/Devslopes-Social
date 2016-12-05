@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
     
@@ -19,18 +20,18 @@ class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
-    // This function is also required for Firebase Auth
-    func firebaseAuth(_ credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if error != nil {
-                print("Kyle: Unable to authenticate with Firebase. - \(error!)")
-            } else {
-                print("Kyle: Successfully authenticated with Firebase.")
-            }
-        })
+    override func viewDidAppear(_ animated: Bool) {
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
+    }
+    
+    func completeSignIn(id: String) {
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("Kyle: Data saved to keychain \(keychainResult)")
+        performSegue(withIdentifier: "goToFeed", sender: nil)        
     }
     
     // This code is required for Facebook Auth (Use for any "sign in with facebook" button
@@ -49,12 +50,25 @@ class SignInVC: UIViewController {
         }
     }
     
+    // This function is also required for Firebase Auth
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("Kyle: Unable to authenticate with Firebase. - \(error!)")
+            } else {
+                print("Kyle: Successfully authenticated with Firebase.")
+                self.completeSignIn(id: (user?.uid)!)
+            }
+        })
+    }
+    
     // Function used for Email Authentication
     @IBAction func signInTapped(_ sender: Any) {
         if let email = EmailField.text, let pwd = PasswordField.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if error == nil {
                     print("Kyle: User signed in with Firebase.")
+                    self.completeSignIn(id: (user?.uid)!)
                 } else {
                     //  CREATE NEW USER IF THE USER DID NOT EXIST
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
@@ -62,6 +76,7 @@ class SignInVC: UIViewController {
                             print("Kyle: Unable to authenticate with Firebase using email.")
                         } else {
                             print("Kyle: Successfully authenticated with Firebase.")
+                            self.completeSignIn(id: (user?.uid)!)
                         }
                     })
                 }
