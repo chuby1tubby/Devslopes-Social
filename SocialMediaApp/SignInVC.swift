@@ -12,10 +12,25 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class SignInVC: UIViewController {
+    
+    // Outlets
+    @IBOutlet weak var EmailField: CustomField!
+    @IBOutlet weak var PasswordField: CustomField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    // This function is also required for Firebase Auth
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("Kyle: Unable to authenticate with Firebase. - \(error!)")
+            } else {
+                print("Kyle: Successfully authenticated with Firebase.")
+            }
+        })
     }
     
     // This code is required for Facebook Auth (Use for any "sign in with facebook" button
@@ -34,14 +49,23 @@ class SignInVC: UIViewController {
         }
     }
     
-    // This function is also required for Firebase Auth
-    func firebaseAuth(_ credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if error != nil {
-                print("Kyle: Unable to authenticate with Firebase. - \(error!)")
-            } else {
-                print("Kyle: Successfully authenticated with Firebase.")
-            }
-        })
+    // Function used for Email Authentication
+    @IBAction func signInTapped(_ sender: Any) {
+        if let email = EmailField.text, let pwd = PasswordField.text {
+            FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
+                if error == nil {
+                    print("Kyle: User signed in with Firebase.")
+                } else {
+                    //  CREATE NEW USER IF THE USER DID NOT EXIST
+                    FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
+                        if error != nil {
+                            print("Kyle: Unable to authenticate with Firebase using email.")
+                        } else {
+                            print("Kyle: Successfully authenticated with Firebase.")
+                        }
+                    })
+                }
+            })
+        }
     }
 }
