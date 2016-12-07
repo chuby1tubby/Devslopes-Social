@@ -14,6 +14,7 @@
 		BF87968A1DF372DC00563245 /* CustomField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8796891DF372DC00563245 /* CustomField.swift */; };
 		BF87968C1DF3745400563245 /* RoundedCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87968B1DF3745400563245 /* RoundedCornerButton.swift */; };
 		BFA818701DF8147200D15B8C /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8186F1DF8147200D15B8C /* CircleImage.swift */; };
+		BFA818721DF81AAE00D15B8C /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA818711DF81AAE00D15B8C /* PostCell.swift */; };
 		BFAFE0921DF424C9002D705F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFAFE0911DF424C9002D705F /* GoogleService-Info.plist */; };
 		BFCED1E91DF56ACA00B05417 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCED1E81DF56ACA00B05417 /* FeedVC.swift */; };
 		BFD9D86E1DF237220031D653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9D86D1DF237220031D653 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		BF87968B1DF3745400563245 /* RoundedCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerButton.swift; sourceTree = "<group>"; };
 		BF982DF81DF41B170043C4B9 /* SocialMediaApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialMediaApp.entitlements; sourceTree = "<group>"; };
 		BFA8186F1DF8147200D15B8C /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		BFA818711DF81AAE00D15B8C /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		BFAFE0911DF424C9002D705F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFCED1E81DF56ACA00B05417 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		BFD9D86A1DF237220031D653 /* SocialMediaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMediaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				BF8796891DF372DC00563245 /* CustomField.swift */,
 				BF87968B1DF3745400563245 /* RoundedCornerButton.swift */,
 				BFA8186F1DF8147200D15B8C /* CircleImage.swift */,
+				BFA818711DF81AAE00D15B8C /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				BF87968C1DF3745400563245 /* RoundedCornerButton.swift in Sources */,
 				BFD9D86E1DF237220031D653 /* AppDelegate.swift in Sources */,
 				BF8796861DF36EEA00563245 /* Constants.swift in Sources */,
+				BFA818721DF81AAE00D15B8C /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
