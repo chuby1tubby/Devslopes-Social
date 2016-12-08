@@ -28,7 +28,8 @@ class SignInVC: UIViewController {
         }
     }
     
-    func completeSignIn(id: String) {
+    func completeSignIn(id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("Kyle: Data saved to keychain \(keychainResult)")
         performSegue(withIdentifier: "goToFeed", sender: nil)        
@@ -57,7 +58,10 @@ class SignInVC: UIViewController {
                 print("Kyle: Unable to authenticate with Firebase. - \(error!)")
             } else {
                 print("Kyle: Successfully authenticated with Firebase.")
-                self.completeSignIn(id: (user?.uid)!)
+                if let user = user {
+                    let userData = ["provider" : credential.provider]
+                    self.completeSignIn(id: (user.uid), userData: userData)
+                }
             }
         })
     }
@@ -68,15 +72,22 @@ class SignInVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if error == nil {
                     print("Kyle: User signed in with Firebase.")
-                    self.completeSignIn(id: (user?.uid)!)
+                    if let user = user {
+                        let userData = ["provider" : user.providerID]
+                        self.completeSignIn(id: (user.uid), userData: userData)
+                    }
                 } else {
                     //  CREATE NEW USER IF THE USER DID NOT EXIST
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
-                        if error != nil {
+                        if error != nil { 
                             print("Kyle: Unable to authenticate with Firebase using email.")
                         } else {
                             print("Kyle: Successfully authenticated with Firebase.")
-                            self.completeSignIn(id: (user?.uid)!)
+                            if let user = user {
+                                let userData = ["provider" : user.providerID ]
+                                
+                                self.completeSignIn(id: (user.uid), userData: userData)
+                            }
                         }
                     })
                 }
