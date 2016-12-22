@@ -17,17 +17,26 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postImg: UIImageView!
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var likeImg: UIImageView!
     
     // Variables
     var post: Post!
-
+    var likesRef: FIRDatabaseReference!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        // Programatically adding a tap recognizer for the heart image in each Post Cell (must be done with code, not with storyboard)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
+        tap.numberOfTapsRequired = 1
+        likeImg.addGestureRecognizer(tap)
+        likeImg.isUserInteractionEnabled = true
     }
     
     func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
+        likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
+        
         self.caption.text = post.caption
         self.likesLabel.text = String(post.likes)
         
@@ -53,5 +62,29 @@ class PostCell: UITableViewCell {
                 }
             })
         }
+        
+        
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeImg.image = UIImage(named: "empty-heart")  // User hasn't liked the post
+            } else {
+                self.likeImg.image = UIImage(named: "filled-heart") // User has liked the post
+            }
+        })
+        
+    }
+    
+    func likeTapped(sender: UITapGestureRecognizer) {
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeImg.image = UIImage(named: "filled-heart")  // User hasn't liked the post
+                self.post.adjustLikes(addLike: true)
+                self.likesRef.setValue(true)
+            } else {
+                self.likeImg.image = UIImage(named: "empty-heart") // User has liked the post
+                self.post.adjustLikes(addLike: false)
+                self.likesRef.removeValue()
+            }
+        })
     }
 }
